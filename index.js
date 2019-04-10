@@ -1,9 +1,8 @@
 var request = require("request");
 var bodyParser = require("body-parser");
-var Q = require('q');
 
-exports.getauth = function (version, callback) {
-    var deferred = Q.defer();
+module.exports.getauth = function (version, callback) {
+
     var url = '';
     var body = '';
 
@@ -15,11 +14,11 @@ exports.getauth = function (version, callback) {
         };
     }
     else{
-        url = 'https://' + process.env.tennant + '.auth.marketingcloudapis.com/v2/token';
+        url = 'https://' + process.env.TENNANT + '.auth.marketingcloudapis.com/v2/token';
         body = {
-            clientId: process.env.CLIENTID,
-            clientSecret: process.env.CLIENTSECRET,
-            grant_type: 'client_credentials'
+            "client_id": process.env.CLIENTID,
+            "client_secret": process.env.CLIENTSECRET,
+            "grant_type": 'client_credentials'
         }
     } 
         
@@ -34,12 +33,10 @@ exports.getauth = function (version, callback) {
     };
     request(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            deferred.resolve(response.body.accessToken);                            
+            callback(response.body); 
         }         
         else {
-            deferred.reject("Status Code: " + response.statusCode + "  Response Message: " + response.statusMessage);
-        }
-        deferred.promise.nodeify(callback);
-        callback(error, deferred.promise);
+            console.log(error);
+        }                
     });       
 };
