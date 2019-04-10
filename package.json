@@ -1,6 +1,6 @@
 {
   "name": "@mcexperts/mcauth",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "MC Auth library to handle both v1 & v2 routes",
   "main": "index.js",
   "scripts": {

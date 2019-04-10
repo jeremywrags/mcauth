@@ -2,7 +2,7 @@ var request = require("request");
 var bodyParser = require("body-parser");
 var Q = require('q');
 
-exports.getauth = function (version) {
+exports.getauth = function (version, callback) {
     var deferred = Q.defer();
     var url = '';
     var body = '';
@@ -40,6 +40,6 @@ exports.getauth = function (version) {
             deferred.reject("Status Code: " + response.statusCode + "  Response Message: " + response.statusMessage);
         }
         deferred.promise.nodeify(callback);
-        return deferred.promise;
+        callback(deferred.promise);
     });       
 };
