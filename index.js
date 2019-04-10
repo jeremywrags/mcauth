@@ -40,6 +40,6 @@ exports.getauth = function (version, callback) {
             deferred.reject("Status Code: " + response.statusCode + "  Response Message: " + response.statusMessage);
         }
         deferred.promise.nodeify(callback);
-        callback(deferred.promise);
+        callback(error, deferred.promise);
     });       
 };
