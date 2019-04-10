@@ -5,7 +5,10 @@ var Q = require('q');
 exports.getauth = function (version) {
     var deferred = Q.defer();
 
-    var url = version = 'v1' ? 'https://auth.exacttargetapis.com/v1/requestToken' : 'https://' + process.env.tennant + '.auth.marketingcloudapis.com/v2/token'
+    if(version =='v1')
+        url = 'https://auth.exacttargetapis.com/v1/requestToken';
+    else 
+        url = 'https://' + process.env.tennant + '.auth.marketingcloudapis.com/v2/token';
 
     var body = {
         clientId: process.env.CLIENTID,
