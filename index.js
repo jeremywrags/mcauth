@@ -4,21 +4,25 @@ var Q = require('q');
 
 exports.getauth = function (version) {
     var deferred = Q.defer();
+    var url = '';
+    var body = '';
 
-    if(version =='v1')
+    if(version =='v1'){
         url = 'https://auth.exacttargetapis.com/v1/requestToken';
-    else 
+        body = {
+            clientId: process.env.CLIENTID,
+            clientSecret: process.env.CLIENTSECRET
+        };
+    }
+    else{
         url = 'https://' + process.env.tennant + '.auth.marketingcloudapis.com/v2/token';
-
-    var body = {
-        clientId: process.env.CLIENTID,
-        clientSecret: process.env.CLIENTSECRET
-    }
-
-    if(version == 'v2'){
+        body = {
+            clientId: process.env.CLIENTID,
+            clientSecret: process.env.CLIENTSECRET,
+            grant_type: 'client_credentials'
+        }
+    } 
         
-        body.set('grant_type', 'client_credentials');
-    }
     var options = {
         method: 'POST',
         url: url,
