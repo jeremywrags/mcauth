@@ -1,0 +1,16 @@
+{
+  "name": "@mcexperts/mcauth",
+  "version": "1.0.4",
+  "description": "MC Auth library to handle both v1 & v2 routes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeremy Ragsdale",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "q": "^1.5.1",
+    "request": "^2.88.0"
+  }
+}
